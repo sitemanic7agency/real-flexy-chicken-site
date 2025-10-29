@@ -1,0 +1,2319 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#BE1C07" />
+    <meta
+      name="description"
+      content="Flexy Chicken - Where Township Flavours Rise to Greatness. Authentic coal-fired chicken with heart, hustle, and heritage."
+    />
+    <title>Flexy Chicken | Where Township Flavours Rise to Greatness</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Rubik+Mono+One&family=DM+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="icon" href="./Images/logo.jpg" type="image/jpg" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap");
+
+      :root {
+        --red: #be1c07;
+        --orange: #d17813;
+        --yellow: #f5b631;
+        --black: #2b2b2b;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #f9f9f9;
+        overflow-x: hidden;
+      }
+
+      .graffiti-font {
+        font-family: "Rubik Mono One", sans-serif;
+      }
+
+      @keyframes flicker {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.8;
+        }
+      }
+
+      .hot-sauce {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        z-index: 100;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .menu-card {
+        position: relative;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .menu-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #d82424, #f8b929, #d36b14);
+        border-radius: 8px 8px 0 0;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .menu-card:hover::before {
+        opacity: 1;
+      }
+
+      .active-tab {
+        background-color: var(--orange) !important;
+        color: white !important;
+      }
+
+      /* Enhanced Menu Card Styles */
+      .menu-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      /* Improved responsive design */
+      @media (max-width: 768px) {
+        .menu-card {
+          margin: 0 8px;
+        }
+      }
+
+      /* Smooth tab transitions */
+      .tab-content {
+        animation: fadeIn 0.5s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Better image handling */
+      picture img {
+        transition: transform 0.3s ease;
+      }
+
+      .menu-card:hover picture img {
+        transform: scale(1.05);
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .testimonial-track {
+        touch-action: pan-y pinch-zoom;
+      }
+
+      /* Smooth transitions */
+      .testimonial-slide {
+        transition: opacity 0.3s ease;
+      }
+
+      /* Special deals styling */
+      .special-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 10;
+        background: linear-gradient(45deg, #d82424, #f8b929);
+        color: white;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 0.8rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Cart notification */
+      .cart-notification {
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        background: #25d366;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        z-index: 1000;
+        transform: translateX(150%);
+        transition: transform 0.3s ease;
+      }
+
+      .cart-notification.show {
+        transform: translateX(0);
+      }
+
+      /* Cart counter */
+      .cart-counter {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background: #f8b929;
+        color: #2b2b2b;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: bold;
+      }
+
+      /* Hero text animation */
+      .hero-text-item {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.8s ease;
+      }
+
+      .hero-text-item.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Optimized image loading */
+      .lazy-load {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .lazy-load.loaded {
+        opacity: 1;
+      }
+
+      /* Order Summary Modal */
+      .order-summary-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .order-summary-modal.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .order-summary-content {
+        background: white;
+        border-radius: 12px;
+        padding: 24px;
+        max-width: 500px;
+        width: 90%;
+        max-height: 80vh;
+        overflow-y: auto;
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+      }
+
+      .order-summary-modal.active .order-summary-content {
+        transform: scale(1);
+      }
+
+      /* Aspect ratio utility */
+      .aspect-\[9\/16\] {
+        aspect-ratio: 9/16;
+      }
+
+      /* Background cover utility */
+      .bg-cover {
+        background-size: cover;
+      }
+
+      .bg-center {
+        background-position: center;
+      }
+
+      /* Text shadow for better readability */
+      .drop-shadow-md {
+        filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07))
+          drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
+      }
+
+      /* Gradient overlay utilities */
+      .bg-gradient-to-t {
+        background-image: linear-gradient(to top, var(--tw-gradient-stops));
+      }
+
+      .from-black\/80 {
+        --tw-gradient-from: rgb(0 0 0 / 0.8);
+        --tw-gradient-to: rgb(0 0 0 / 0);
+        --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+      }
+
+      .to-transparent {
+        --tw-gradient-to: transparent;
+      }
+      /* hide card images everywhere except specials */
+      .tab-content .card-img        { display: none; }   /* hide by default */
+       #specials   .card-img        { display: block; }  /* show in specials */
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Cart Notification -->
+    <div id="cartNotification" class="cart-notification">
+      <i class="fas fa-check-circle mr-2"></i>
+      <span id="notificationText">Item added to cart!</span>
+    </div>
+
+    <!-- Order Summary Modal -->
+    <div id="orderSummaryModal" class="order-summary-modal">
+      <div class="order-summary-content">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-2xl font-bold text-[#D82424]">Order Summary</h3>
+          <button id="closeSummary" class="text-gray-500 hover:text-gray-700">
+            <i class="fas fa-times text-xl"></i>
+          </button>
+        </div>
+
+        <div id="summaryItems" class="mb-6">
+          <!-- Items will be populated here -->
+        </div>
+
+        <div class="border-t border-gray-200 pt-4 mb-6">
+          <div class="flex justify-between text-lg font-bold">
+            <span>Total:</span>
+            <span id="summaryTotal">R0</span>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-3">
+          <button
+            id="confirmOrder"
+            class="bg-[#25D366] text-white font-bold py-3 px-6 rounded-full hover:bg-[#128C7E] transition duration-300 text-center"
+          >
+            <i class="fab fa-whatsapp mr-2"></i> Send Order via WhatsApp
+          </button>
+          <button
+            id="continueShopping"
+            class="bg-gray-200 text-gray-800 font-bold py-3 px-6 rounded-full hover:bg-gray-300 transition duration-300 text-center"
+          >
+            Continue Shopping
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <div class="hot-sauce">
+      <a
+        href="https://wa.me/27769455897"
+        class="bg-[#25D366] text-white p-4 rounded-full shadow-lg flex items-center justify-center relative"
+      >
+        <i class="fab fa-whatsapp text-2xl"></i>
+        <div id="cartCount" class="cart-counter">0</div>
+      </a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-[#BE1C07] text-white sticky top-0 z-50 shadow-lg">
+      <div
+        class="container mx-auto px-4 py-2.5 flex justify-between items-center"
+      >
+        <div class="flex items-center">
+          <a href="#" class="flex items-center space-x-2">
+            <img
+              src="./Images/logo.jpg"
+              alt="Flexy Chicken Logo"
+              class="h-10 w-auto"
+            />
+            <div
+              class="text-white text-2xl"
+              style="font-family: 'Luckiest Guy', cursive"
+            >
+              FLEXY CHICKEN
+            </div>
+          </a>
+        </div>
+
+        <div class="hidden md:flex space-x-6">
+          <a href="#home" class="hover:text-[#F8B929] transition">Home</a>
+          <a href="#menu" class="hover:text-[#F8B929] transition">Menu</a>
+          <a href="#about" class="hover:text-[#F8B929] transition">About</a>
+          <a href="#contact" class="hover:text-[#F8B929] transition">Contact</a>
+        </div>
+
+        <div class="md:hidden">
+          <button id="mobile-menu-button" class="text-white focus:outline-none">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden bg-[#BE1C07] px-4 pb-4">
+        <a href="#home" class="block py-2 hover:text-[#F8B929]">Home</a>
+        <a href="#menu" class="block py-2 hover:text-[#F8B929]">Menu</a>
+        <a href="#about" class="block py-2 hover:text-[#F8B929]">About</a>
+        <a href="#contact" class="block py-2 hover:text-[#F8B929]">Contact</a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      id="home"
+      class="relative h-screen flex items-center justify-center bg-[#ffffff] overflow-hidden"
+    >
+      <div class="absolute inset-0 bg-black opacity-50"></div>
+      <video autoplay muted loop class="absolute w-full h-full object-cover">
+        <source src="./Videos/video2.mp4" type="video/mp4" />
+      </video>
+
+      <div class="relative z-10 text-center px-4">
+        <h1
+          class="text-4xl md:text-6xl font-bold mb-8 text-white graffiti-font"
+        >
+          <span class="hero-text-item text-[#D36B14]">WHERE TOWNSHIP</span>
+          <br />
+          <span class="hero-text-item text-[#F8B929]">FLAVOURS RISE</span>
+          <br />
+          <span class="hero-text-item text-[#D82424]">TO GREATNESS</span>
+        </h1>
+        <p class="text-xl text-white mb-8 max-w-2xl mx-auto">
+          From the Umhlanga Balcony Grills to the Streets of Inanda — we serve
+          coal-fired chicken with heart, hustle, and heritage.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a
+            href="#order"
+            class="bg-[#D82424] hover:bg-[#F8B929] text-white font-bold py-3 px-6 rounded-full transition duration-300 transform hover:scale-105"
+          >
+            Order Now <i class="fas fa-fire ml-2 flame-animation"></i>
+          </a>
+          <a
+            href="#menu"
+            class="bg-[#F8B929] hover:bg-[#D36B14] text-[#2B2B2B] font-bold py-3 px-6 rounded-full transition duration-300 transform hover:scale-105"
+          >
+            Explore Menu <i class="fas fa-utensils ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- What Makes Us Different -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <h2
+          class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#2B2B2B]"
+        >
+          What Makes <span class="text-[#D82424]">Flexy</span> Different
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-[#FFF5E5] p-6 rounded-lg shadow-md text-center">
+            <div
+              class="bg-[#D82424] text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <i class="fas fa-fire text-2xl flame-animation"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2 text-[#2B2B2B]">
+              Flame-Grilled Perfection
+            </h3>
+            <p class="text-gray-700">
+              Our chicken is marinated for 24 hours in secret township spices,
+              then flame-grilled to juicy perfection. Taste the difference real
+              fire makes.
+            </p>
+          </div>
+
+          <div class="bg-[#FFF5E5] p-6 rounded-lg shadow-md text-center">
+            <div
+              class="bg-[#D36B14] text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <i class="fas fa-hand-sparkles text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2 text-[#2B2B2B]">
+              Hygiene Excellence
+            </h3>
+            <p class="text-gray-700">
+              We maintain the highest standards of cleanliness. Our kitchen is
+              spotless, our team trained in food safety, so you can eat with
+              confidence.
+            </p>
+          </div>
+
+          <div class="bg-[#FFF5E5] p-6 rounded-lg shadow-md text-center">
+            <div
+              class="bg-[#F8B929] text-[#2B2B2B] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <i class="fas fa-hands-helping text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2 text-[#2B2B2B]">
+              Community First
+            </h3>
+            <p class="text-gray-700">
+              We're more than a restaurant - we're a community hub. We hire
+              locally, support neighborhood events, and give back where we can.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4 text-center">
+        <h2
+          class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#2B2B2B]"
+        >
+          See What <span class="text-[#D82424]">Our Customers</span> Are Saying
+        </h2>
+
+        <!-- Carousel Container -->
+        <div class="relative max-w-3xl mx-auto min-h-[200px] overflow-hidden">
+          <div
+            class="testimonial-track flex transition-transform duration-300 ease-in-out"
+          >
+            <div class="testimonial-slide flex-shrink-0 w-full">
+              <p
+                class="text-xl mb-6 text-gray-800"
+                style="font-family: 'Poppins', serif"
+              >
+                "We took the pap and coleslaw combo, we really enjoyed our meal.
+                A big thank you to Flexy Chicken."
+              </p>
+              <h4 class="font-bold text-lg text-gray-800">Amanda G.</h4>
+              <p class="text-gray-500 text-sm">Local Teacher</p>
+            </div>
+
+            <div class="testimonial-slide flex-shrink-0 w-full">
+              <p
+                class="text-xl mb-6 text-gray-800"
+                style="font-family: 'Poppins', serif"
+              >
+                "Always delicious, can't get enough of it"
+              </p>
+              <h4 class="font-bold text-lg text-gray-800">Lindokuhle M.</h4>
+              <p class="text-gray-500 text-sm">Nurse</p>
+            </div>
+
+            <div class="testimonial-slide flex-shrink-0 w-full">
+              <p
+                class="text-xl mb-6 text-gray-800"
+                style="font-family: 'Poppins', serif"
+              >
+                "My love thank you so much! It's still the same great taste and
+                to even think that it was December 2023 when l last visited
+                Flexy Chicken since l moved to Vryheid for work, and when l came
+                back today and l saw you're still there and you never
+                disappoint."
+              </p>
+              <h4 class="font-bold text-lg text-gray-800">Zanele S.</h4>
+              <p class="text-gray-500 text-sm">Loyal Patron</p>
+            </div>
+
+            <div class="testimonial-slide flex-shrink-0 w-full">
+              <p
+                class="text-xl mb-6 text-gray-800"
+                style="font-family: 'Poppins', serif"
+              >
+                "The pap and chakalaka combo hits like Sunday lunch at home.
+                Real comfort food."
+              </p>
+              <h4 class="font-bold text-lg text-gray-800">Themba K.</h4>
+              <p class="text-gray-500 text-sm">First-Time Visitor</p>
+            </div>
+
+            <div class="testimonial-slide flex-shrink-0 w-full">
+              <p
+                class="text-xl mb-6 text-gray-800"
+                style="font-family: 'Poppins', serif"
+              >
+                "My kids literally cheer when I pull up outside Flexy. And I
+                love that the place is always spotless."
+              </p>
+              <h4 class="font-bold text-lg text-gray-800">Sibongile N.</h4>
+              <p class="text-gray-500 text-sm">Construction Supervisor</p>
+            </div>
+
+            <div class="testimonial-slide flex-shrink-0 w-full">
+              <p
+                class="text-xl mb-6 text-gray-800"
+                style="font-family: 'Poppins', serif"
+              >
+                "Impeccable hospitality. Honestly, it tastes better than most
+                big franchises."
+              </p>
+              <h4 class="font-bold text-lg text-gray-800">Kagiso D.</h4>
+              <p class="text-gray-500 text-sm">Uber Driver</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dots -->
+        <div class="flex justify-center space-x-3 mt-8">
+          <button
+            class="dot w-3 h-3 rounded-full bg-[#db6709]"
+            data-index="0"
+          ></button>
+          <button
+            class="dot w-3 h-3 rounded-full bg-gray-300"
+            data-index="1"
+          ></button>
+          <button
+            class="dot w-3 h-3 rounded-full bg-gray-300"
+            data-index="2"
+          ></button>
+          <button
+            class="dot w-3 h-3 rounded-full bg-gray-300"
+            data-index="3"
+          ></button>
+          <button
+            class="dot w-3 h-3 rounded-full bg-gray-300"
+            data-index="4"
+          ></button>
+          <button
+            class="dot w-3 h-3 rounded-full bg-gray-300"
+            data-index="5"
+          ></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Story CTA -->
+    <section class="py-16 bg-gradient-to-r from-[#D82424] to-[#D36B14]">
+      <div
+        class="container mx-auto px-4 flex flex-col md:flex-row items-center"
+      >
+        <div class="md:w-1/2 mb-8 md:mb-0">
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+            The Fire That Started It All
+          </h2>
+          <p class="text-white text-lg mb-6">
+            Discover how one woman's vision and a small balcony grill grew into
+            Inanda's favorite chicken spot. Our story is about passion,
+            community, and flavor that can't be duplicated.
+          </p>
+          <a
+            href="#about"
+            class="bg-white text-[#D82424] font-bold py-3 px-6 rounded-full inline-block hover:bg-[#2B2B2B] hover:text-white transition duration-300"
+          >
+            Read Our Story <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+        <div class="md:w-1/2 flex justify-center"></div>
+      </div>
+    </section>
+
+    <!-- Updated Menu Section - Specials First -->
+    <section id="menu" class="py-16 bg-white">
+    
+        <h2
+          class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#2B2B2B]"
+        >
+          Taste the <span class="text-[#D82424]">Flex</span>
+        </h2>
+
+        <!-- Menu Tabs - Specials First -->
+        <div class="flex overflow-x-auto pb-2 mb-8 scrollbar-hide">
+          <button
+            onclick="openTab('specials')"
+            class="tab-button active-tab bg-[#D82424] text-white px-6 py-2 rounded-full mr-2 whitespace-nowrap"
+          >
+            <i class="fas fa-star mr-2"></i> Special Deals
+          </button>
+          <button
+            onclick="openTab('chicken')"
+            class="tab-button bg-[#D82424] text-white px-6 py-2 rounded-full mr-2 whitespace-nowrap"
+          >
+            <i class="fas fa-drumstick-bite mr-2"></i> Chicken
+          </button>
+          <button
+            onclick="openTab('sides')"
+            class="tab-button bg-[#D82424] text-white px-6 py-2 rounded-full mr-2 whitespace-nowrap"
+          >
+            <i class="fas fa-fries mr-2"></i> Sides
+          </button>
+          <button
+            onclick="openTab('combos')"
+            class="tab-button bg-[#D82424] text-white px-6 py-2 rounded-full mr-2 whitespace-nowrap"
+          >
+            <i class="fas fa-hamburger mr-2"></i> Combos
+          </button>
+          <button
+            onclick="openTab('full-meal')"
+            class="tab-button bg-[#B82424] text-white px-6 py-2 rounded-full whitespace-nowrap"
+          >
+            <i class="fas fa-glass-whiskey mr-2"></i> Full Meal
+          </button>
+        </div>
+
+        <!-- SPECIAL DEALS CONTENT - Now First -->
+        <div id="specials" class="tab-content">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- R55 Deal -->
+            <div
+              class="menu-card relative rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105 border-2 border-[#F8B929] aspect-[9/16] min-h-[400px]"
+            >
+              <div class="absolute inset-0 z-0">
+                <picture>
+                  <source
+                    srcset="./Images/FlexyAvifImg/special-55.avif"
+                    type="image/avif"
+                  />
+                  <source
+                    srcset="./Images/FlexyWebP/special-55.webp"
+                    type="image/webp"
+                  />
+                  <img
+                    src="./Images/opencompressed/special-55.jpg"
+                    alt="R55 Special Deal"
+                    class="w-full h-full object-cover"
+                  />
+                </picture>
+                <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+              </div>
+
+              <div
+                class="relative z-10 h-full flex flex-col justify-between p-6 text-white"
+              >
+                <div class="flex justify-between items-start">
+                  <div
+                    class="special-badge bg-gradient-to-r from-[#D82424] to-[#F8B929]"
+                  >
+                    HOT DEAL
+                  </div>
+                </div>
+
+                <div
+                  class="bg-gradient-to-t from-black/80 to-transparent p-4 -mx-6 -mb-6 rounded-b-xl"
+                >
+                  <h3 class="text-2xl font-bold mb-3 text-white drop-shadow-md">
+                    R55 Value Deal
+                  </h3>
+                  <div class="text-sm mb-4 space-y-1 drop-shadow-md">
+                    <p class="font-semibold">Choose one option:</p>
+                    <div class="ml-2">
+                      <p>• Quarter Chicken with Pap & Sides</p>
+                      <p class="ml-4 text-xs text-gray-200">OR</p>
+                      <p>• Quarter Chicken with Chips</p>
+                    </div>
+                    <p class="text-xs italic mt-2 text-[#F8B929]">
+                      Sauce on the side: +R30
+                    </p>
+                  </div>
+                  <div class="flex justify-between items-center mt-4">
+                    <span
+                      class="text-2xl font-bold text-[#F8B929] drop-shadow-md"
+                      >R55</span
+                    >
+                    <button
+                      class="add-to-cart bg-[#F8B929] text-[#2B2B2B] font-bold py-2 px-4 rounded-full hover:bg-[#D36B14] transition transform hover:scale-105 shadow-lg"
+                      data-name="R55 Value Deal"
+                      data-price="55"
+                    >
+                      Add to Order
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- R75 Quarter Leg Deal -->
+            <div
+              class="menu-card relative rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105 border-2 border-[#F8B929] aspect-[9/16] min-h-[400px]"
+            >
+              <div class="absolute inset-0 z-0">
+                <picture>
+                  <source
+                    srcset="./Images/FlexyAvifImg/special-75-leg.avif"
+                    type="image/avif"
+                  />
+                  <source
+                    srcset="./Images/FlexyWebP/special-75-leg.webp"
+                    type="image/webp"
+                  />
+                  <img
+                    src="./Images/opencompressed/special-75-leg.jpg"
+                    alt="R75 Quarter Leg Deal"
+                    class="w-full h-full object-cover"
+                  />
+                </picture>
+                <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+              </div>
+
+              <div
+                class="relative z-10 h-full flex flex-col justify-between p-6 text-white"
+              >
+                <div class="flex justify-between items-start">
+                  <div
+                    class="special-badge bg-gradient-to-r from-[#D82424] to-[#F8B929]"
+                  >
+                    POPULAR
+                  </div>
+                </div>
+
+                <div
+                  class="bg-gradient-to-t from-black/80 to-transparent p-4 -mx-6 -mb-6 rounded-b-xl"
+                >
+                  <h3 class="text-2xl font-bold mb-3 text-white drop-shadow-md">
+                    Quarter Leg Combo
+                  </h3>
+                  <div class="text-sm mb-4 space-y-1 drop-shadow-md">
+                    <p>• Quarter Leg Piece</p>
+                    <p>• Chips</p>
+                    <p>• 2 Fresh Rolls</p>
+                    <p>• 750ml Coke</p>
+                  </div>
+                  <div class="flex justify-between items-center mt-4">
+                    <span
+                      class="text-2xl font-bold text-[#F8B929] drop-shadow-md"
+                      >R75</span
+                    >
+                    <button
+                      class="add-to-cart bg-[#F8B929] text-[#2B2B2B] font-bold py-2 px-4 rounded-full hover:bg-[#D36B14] transition transform hover:scale-105 shadow-lg"
+                      data-name="Quarter Leg Combo"
+                      data-price="75"
+                    >
+                      Add to Order
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- R75 Wings Deal -->
+            <div
+              class="menu-card relative rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105 border-2 border-[#F8B929] aspect-[9/16] min-h-[400px]"
+            >
+              <div class="absolute inset-0 z-0">
+                <picture>
+                  <source
+                    srcset="./Images/FlexyAvifImg/special-75-wings.avif"
+                    type="image/avif"
+                  />
+                  <source
+                    srcset="./Images/FlexyWebP/special-75-wings.webp"
+                    type="image/webp"
+                  />
+                  <img
+                    src="./Images/opencompressed/special-75-wings.jpg"
+                    alt="R75 Wings Deal"
+                    class="w-full h-full object-cover"
+                  />
+                </picture>
+                <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+              </div>
+
+              <div
+                class="relative z-10 h-full flex flex-col justify-between p-6 text-white"
+              >
+                <div class="flex justify-between items-start">
+                  <div
+                    class="special-badge bg-gradient-to-r from-[#D82424] to-[#F8B929]"
+                  >
+                    BEST VALUE
+                  </div>
+                </div>
+
+                <div
+                  class="bg-gradient-to-t from-black/80 to-transparent p-4 -mx-6 -mb-6 rounded-b-xl"
+                >
+                  <h3 class="text-2xl font-bold mb-3 text-white drop-shadow-md">
+                    4 Wings Combo
+                  </h3>
+                  <div class="text-sm mb-4 space-y-1 drop-shadow-md">
+                    <p>• 4 Juicy Wings</p>
+                    <p>• Small Chips</p>
+                    <p>• 2 Fresh Rolls</p>
+                    <p>• 750ml Coke</p>
+                    <p class="text-xs italic mt-2 text-[#F8B929]">
+                      With sauce bottle: R105
+                    </p>
+                  </div>
+                  <div class="flex justify-between items-center mt-4">
+                    <span
+                      class="text-2xl font-bold text-[#F8B929] drop-shadow-md"
+                      >R75</span
+                    >
+                    <button
+                      class="add-to-cart bg-[#F8B929] text-[#2B2B2B] font-bold py-2 px-4 rounded-full hover:bg-[#D36B14] transition transform hover:scale-105 shadow-lg"
+                      data-name="4 Wings Combo"
+                      data-price="75"
+                    >
+                      Add to Order
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- R85 Quarter Combo -->
+            <div
+              class="menu-card relative rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105 border-2 border-[#F8B929] aspect-[9/16] min-h-[400px]"
+            >
+              <div class="absolute inset-0 z-0">
+                <picture>
+                  <source
+                    srcset="./Images/FlexyAvifImg/special-85.avif"
+                    type="image/avif"
+                  />
+                  <source
+                    srcset="./Images/FlexyWebP/special-85.webp"
+                    type="image/webp"
+                  />
+                  <img
+                    src="./Images/opencompressed/special-85.jpg"
+                    alt="R85 Quarter Combo"
+                    class="w-full h-full object-cover"
+                  />
+                </picture>
+                <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+              </div>
+
+              <div
+                class="relative z-10 h-full flex flex-col justify-between p-6 text-white"
+              >
+                <div class="flex justify-between items-start">
+                  <div
+                    class="special-badge bg-gradient-to-r from-[#D82424] to-[#F8B929]"
+                  >
+                    FAN FAVORITE
+                  </div>
+                </div>
+
+                <div
+                  class="bg-gradient-to-t from-black/80 to-transparent p-4 -mx-6 -mb-6 rounded-b-xl"
+                >
+                  <h3 class="text-2xl font-bold mb-3 text-white drop-shadow-md">
+                    Ultimate Quarter Combo
+                  </h3>
+                  <div class="text-sm mb-4 space-y-1 drop-shadow-md">
+                    <p>• Quarter Chicken</p>
+                    <p>• Chips</p>
+                    <p>• 2 Fresh Rolls</p>
+                    <p>• 2 Sides of your choice</p>
+                    <p>• 750ml Coke</p>
+                  </div>
+                  <div class="flex justify-between items-center mt-4">
+                    <span
+                      class="text-2xl font-bold text-[#F8B929] drop-shadow-md"
+                      >R85</span
+                    >
+                    <button
+                      class="add-to-cart bg-[#F8B929] text-[#2B2B2B] font-bold py-2 px-4 rounded-full hover:bg-[#D36B14] transition transform hover:scale-105 shadow-lg"
+                      data-name="Ultimate Quarter Combo"
+                      data-price="85"
+                    >
+                      Add to Order
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- R190 Family Deal -->
+            <div
+              class="menu-card relative rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105 border-2 border-[#F8B929] aspect-[9/16] min-h-[400px]"
+            >
+              <div class="absolute inset-0 z-0">
+                <picture>
+                  <source
+                    srcset="./Images/FlexyAvifImg/special-190.avif"
+                    type="image/avif"
+                  />
+                  <source
+                    srcset="./Images/FlexyWebP/special-190.webp"
+                    type="image/webp"
+                  />
+                  <img
+                    src="./Images/opencompressed/special-190.jpg"
+                    alt="R190 Family Deal"
+                    class="w-full h-full object-cover"
+                  />
+                </picture>
+                <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+              </div>
+
+              <div
+                class="relative z-10 h-full flex flex-col justify-between p-6 text-white"
+              >
+                <div class="flex justify-between items-start">
+                  <div
+                    class="special-badge bg-gradient-to-r from-[#D82424] to-[#F8B929]"
+                  >
+                    FAMILY PACK
+                  </div>
+                </div>
+
+                <div
+                  class="bg-gradient-to-t from-black/80 to-transparent p-4 -mx-6 -mb-6 rounded-b-xl"
+                >
+                  <h3 class="text-2xl font-bold mb-3 text-white drop-shadow-md">
+                    Family Feast
+                  </h3>
+                  <div class="text-sm mb-4 space-y-1 drop-shadow-md">
+                    <p>• Full Chicken</p>
+                    <p>• Large Chips</p>
+                    <p>• 2.5 Litre Coke</p>
+                    <p class="text-xs italic mt-2 text-[#F8B929]">
+                      Feeds 3-4 people
+                    </p>
+                  </div>
+                  <div class="flex justify-between items-center mt-4">
+                    <span
+                      class="text-2xl font-bold text-[#F8B929] drop-shadow-md"
+                      >R190</span
+                    >
+                    <button
+                      class="add-to-cart bg-[#F8B929] text-[#2B2B2B] font-bold py-2 px-4 rounded-full hover:bg-[#D36B14] transition transform hover:scale-105 shadow-lg"
+                      data-name="Family Feast"
+                      data-price="190"
+                    >
+                      Add to Order
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- R200 Party Deal -->
+            <div
+              class="menu-card relative rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105 border-2 border-[#F8B929] aspect-[9/16] min-h-[400px]"
+            >
+              <div class="absolute inset-0 z-0">
+                <picture>
+                  <source
+                    srcset="./Images/FlexyAvifImg/special-200.avif"
+                    type="image/avif"
+                  />
+                  <source
+                    srcset="./Images/FlexyWebP/special-200.webp"
+                    type="image/webp"
+                  />
+                  <img
+                    src="./Images/opencompressed/special-200.jpg"
+                    alt="R200 Party Deal"
+                    class="w-full h-full object-cover"
+                  />
+                </picture>
+                <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+              </div>
+
+              <div
+                class="relative z-10 h-full flex flex-col justify-between p-6 text-white"
+              >
+                <div class="flex justify-between items-start">
+                  <div
+                    class="special-badge bg-gradient-to-r from-[#D82424] to-[#F8B929]"
+                  >
+                    PARTY SIZE
+                  </div>
+                </div>
+
+                <div
+                  class="bg-gradient-to-t from-black/80 to-transparent p-4 -mx-6 -mb-6 rounded-b-xl"
+                >
+                  <h3 class="text-2xl font-bold mb-3 text-white drop-shadow-md">
+                    Party Pack
+                  </h3>
+                  <div class="text-sm mb-4 space-y-1 drop-shadow-md">
+                    <p>• Full Chicken</p>
+                    <p>• Large Chips</p>
+                    <p>• 2 Litre Coke</p>
+                    <p>• 2 Fresh Rolls</p>
+                    <p class="text-xs italic mt-2 text-[#F8B929]">
+                      With sauce: R230
+                    </p>
+                  </div>
+                  <div class="flex justify-between items-center mt-4">
+                    <span
+                      class="text-2xl font-bold text-[#F8B929] drop-shadow-md"
+                      >R200</span
+                    >
+                    <button
+                      class="add-to-cart bg-[#F8B929] text-[#2B2B2B] font-bold py-2 px-4 rounded-full hover:bg-[#D36B14] transition transform hover:scale-105 shadow-lg"
+                      data-name="Party Pack"
+                      data-price="200"
+                    >
+                      Add to Order
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chicken Content -->
+        <div id="chicken" class="tab-content hidden">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div
+              class="menu-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-10"
+            >
+              <div class="p-6 flex-grow">
+                <h3 class="text-xl font-bold text-[#D82424] mb-2">
+                  Full Chicken
+                </h3>
+                <p class="text-gray-700 mb-4">
+                  Marinated, grilled and basted with our secret sauce. Serves
+                  3-4
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-lg font-bold text-[#2B2B2B]">R130</span>
+                  <button
+                    class="add-to-cart bg-[#F8B929] text-[#2B2B2B] font-bold py-2 px-4 rounded-full hover:bg-[#D36B14] transition"
+                    data-name="Full Chicken"
+                    data-price="130"
+                  >
+                    Add to Order
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="menu-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105"
+            >
+              <!-- <div class="h-48 overflow-hidden">
+                <picture>
+                  <source srcset="./Images/half.avif" type="image/avif" />
+                  <source srcset="./Images/half.webp" type="image/webp" />
+                  <img
+                    src="./Images/half.jpg"
+                    alt="Half Chicken"
+                    class="w-full h-full object-cover lazy-load"
+                    loading="lazy"
+                  />
+                </picture>
+              </div> -->
+              <div class="p-6 flex-grow">
+                <h3 class="text-xl font-bold text-[#D82424] mb-2">
+                  Half Chicken
+                </h3>
+                <p class="text-gray-700 mb-4">
+                  Flame-grilled with choice of mild or hot basting. Ideal for
+                  two.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-lg font-bold text-[#2B2B2B]">R70</span>
+                  <button
+                    class="add-to-cart bg-[#F8B929] text-[#2B2B2B] font-bold py-2 px-4 rounded-full hover:bg-[#D36B14] transition"
+                    data-name="Half Chicken"
+                    data-price="70"
+                  >
+                    Add to Order
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="menu-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105"
+            >
+              <!-- <div class="h-48 overflow-hidden">
+                <picture>
+                  <source srcset="./Images/quat.avif" type="image/avif" />
+                  <source srcset="./Images/quat.webp" type="image/webp" />
+                  <img
+                    src="./Images/quat.jpg"
+                    alt="Quarter Chicken"
+                    class="w-full h-full object-cover lazy-load"
+                    loading="lazy"
+                  />
+                </picture>
+              </div> -->
+              <div class="p-6 flex-grow">
+                <h3 class="text-xl font-bold text-[#D82424] mb-2">
+                  Quarter Chicken
+                </h3>
+                <p class="text-gray-700 mb-4">
+                  A classic grilled portion with bold basting, just enough to
+                  satisfy.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-lg font-bold text-[#2B2B2B]">R35</span>
+                  <button
+                    class="add-to-cart bg-[#F8B929] text-[#2B2B2B] font-bold py-2 px-4 rounded-full hover:bg-[#D36B14] transition"
+                    data-name="Quarter Chicken"
+                    data-price="35"
+                  >
+                    Add to Order
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sides Content -->
+        <div id="sides" class="tab-content hidden">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div
+              class="menu-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105"
+            >
+              <!-- <div class="h-48 overflow-hidden">
+                <picture>
+                  <source srcset="./Images/pap.avif" type="image/avif" />
+                  <source srcset="./Images/pap.webp" type="image/webp" />
+                  <img
+                    src="./Images/pap.jpg"
+                    alt="Pap Only"
+                    class="w-full h-full object-cover lazy-load"
+                    loading="lazy"
+                  />
+                </picture>
+              </div> -->
+              <div class="p-6flex-grow">
+                <h3 class="text-xl font-bold text-[#D82424] mb-2">Pap Only</h3>
+                <p class="text-gray-700 mb-4">
+                  Fluffy, soft, and freshly made. Great as a side or base.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-lg font-bold text-[#2B2B2B]">R10</span>
+                  <button
+                    class="add-to-cart bg-[#F8B929] text-[#2B2B2B] font-bold py-2 px-4 rounded-full hover:bg-[#D36B14] transition"
+                    data-name="Pap Only"
+                    data-price="10"
+                  >
+                    Add to Order
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="menu-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105"
+            >
+              <!-- <div class="h-48 overflow-hidden">
+                <picture>
+                  <source srcset="./Images/sauce.avif" type="image/avif" />
+                  <source srcset="./Images/sauce.webp" type="image/webp" />
+                  <img
+                    src="./Images/sauce.jpg"
+                    alt="Flexy Sauce"
+                    class="w-full h-full object-cover lazy-load"
+                    loading="lazy"
+                  />
+                </picture>
+              </div> -->
+              <div class="p-6 flex-grow">
+                <h3 class="text-xl font-bold text-[#D82424] mb-2">
+                  Flexy Sauce Bottle
+                </h3>
+                <p class="text-gray-700 mb-4">
+                  Our signature mild or hot sauce. Take the flavor home!
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-lg font-bold text-[#2B2B2B]">R30</span>
+                  <button
+                    class="add-to-cart bg-[#F8B929] text-[#2B2B2B] font-bold py-2 px-4 rounded-full hover:bg-[#D36B14] transition"
+                    data-name="Flexy Sauce Bottle"
+                    data-price="30"
+                  >
+                    Add to Order
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="menu-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105"
+            >
+              <!-- <div class="h-48 overflow-hidden">
+                <picture>
+                  <source srcset="./Images/coke-2l.avif" type="image/avif" />
+                  <source srcset="./Images/coke-2l.webp" type="image/webp" />
+                  <img
+                    src="./Images/coke-2l.jpg"
+                    alt="Two Litre Coke"
+                    class="w-full h-full object-cover lazy-load"
+                    loading="lazy"
+                  />
+                </picture>
+              </div> -->
+              <div class="p-6 flex-grow">
+                <h3 class="text-xl font-bold text-[#D82424] mb-2">
+                  Two Litre Coke (2L)
+                </h3>
+                <p class="text-gray-700 mb-4">
+                  Perfect for sharing with family and friends. The classic
+                  refreshment that pairs perfectly with our flame-grilled
+                  chicken.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-lg font-bold text-[#2B2B2B]">R30</span>
+                  <button
+                    class="add-to-cart bg-[#F8B929] text-[#2B2B2B] font-bold py-2 px-4 rounded-full hover:bg-[#D36B14] transition"
+                    data-name="Two Litre Coke (2L)"
+                    data-price="30"
+                  >
+                    Add to Order
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="menu-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105"
+            >
+              <!-- <div class="h-48 overflow-hidden">
+                <picture>
+                  <source srcset="./Images/coke-750ml.avif" type="image/avif" />
+                  <source srcset="./Images/coke-750ml.webp" type="image/webp" />
+                  <img
+                    src="./Images/coke-750ml.jpg"
+                    alt="750ml Coke"
+                    class="w-full h-full object-cover lazy-load"
+                    loading="lazy"
+                  />
+                </picture>
+              </div> -->
+              <div class="p-6 flex-grow">
+                <h3 class="text-xl font-bold text-[#D82424] mb-2">
+                  750ml Coke
+                </h3>
+                <p class="text-gray-700 mb-4">
+                  The perfect size for one or two people. Enjoy the crisp,
+                  refreshing taste of Coca-Cola with your meal.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-lg font-bold text-[#2B2B2B]">R20</span>
+                  <button
+                    class="add-to-cart bg-[#F8B929] text-[#2B2B2B] font-bold py-2 px-4 rounded-full hover:bg-[#D36B14] transition"
+                    data-name="750ml Coke"
+                    data-price="20"
+                  >
+                    Add to Order
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="menu-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105"
+            >
+              <!-- <div class="h-48 overflow-hidden">
+                <picture>
+                  <source srcset="./Images/rolls.avif" type="image/avif" />
+                  <source srcset="./Images/rolls.webp" type="image/webp" />
+                  <img
+                    src="./Images/rolls.jpg"
+                    alt="Fresh Bread Rolls"
+                    class="w-full h-full object-cover lazy-load"
+                    loading="lazy"
+                  />
+                </picture>
+              </div> -->
+              <div class="p-6 flex-grow">
+                <h3 class="text-xl font-bold text-[#D82424] mb-2">
+                  Fresh Bread Rolls
+                </h3>
+                <p class="text-gray-700 mb-4">
+                  Soft, fresh bread rolls baked daily. Perfect for soaking up
+                  our delicious sauces or making mini chicken sandwiches.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-lg font-bold text-[#2B2B2B]">R5 each</span>
+                  <button
+                    class="add-to-cart bg-[#F8B929] text-[#2B2B2B] font-bold py-2 px-4 rounded-full hover:bg-[#D36B14] transition"
+                    data-name="Fresh Bread Rolls"
+                    data-price="5"
+                  >
+                    Add to Order
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="menu-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105"
+            >
+              <!-- <div class="h-48 overflow-hidden">
+                <picture>
+                  <source srcset="./Images/rolls-pack.avif" type="image/avif" />
+                  <source srcset="./Images/rolls-pack.webp" type="image/webp" />
+                  <img
+                    src="./Images/rolls-pack.jpg"
+                    alt="Pack of Six Rolls"
+                    class="w-full h-full object-cover lazy-load"
+                    loading="lazy"
+                  />
+                </picture>
+              </div> -->
+              <div class="p-6 flex-grow">
+                <h3 class="text-xl font-bold text-[#D82424] mb-2">
+                  Pack of Six Rolls
+                </h3>
+                <p class="text-gray-700 mb-4">
+                  Get six of our delicious fresh bread rolls at a special price.
+                  Perfect for family meals or sharing with friends.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-lg font-bold text-[#2B2B2B]">R30</span>
+                  <button
+                    class="add-to-cart bg-[#F8B929] text-[#2B2B2B] font-bold py-2 px-4 rounded-full hover:bg-[#D36B14] transition"
+                    data-name="Pack of Six Rolls"
+                    data-price="30"
+                  >
+                    Add to Order
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Combos Content -->
+        <div id="combos" class="tab-content hidden">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div
+              class="menu-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105"
+            >
+              <!-- <div class="h-48 overflow-hidden">
+                <picture>
+                  <source
+                    srcset="./Images/full-chicken-and-chips.avif"
+                    type="image/avif"
+                  />
+                  <source
+                    srcset="./Images/full-chicken-and-chips.webp"
+                    type="image/webp"
+                  />
+                  <img
+                    src="./Images/full-chicken-and-chips.png"
+                    alt="Full Chicken And Chips"
+                    class="w-full h-full object-cover lazy-load"
+                    loading="lazy"
+                  />
+                </picture>
+              </div> -->
+              <div class="p-6 flex-grow">
+                <h3 class="text-xl font-bold text-[#D82424] mb-2">
+                  Full Chicken And Chips
+                </h3>
+                <p class="text-gray-700 mb-4">
+                  Our best-seller — full flame chicken with generous crispy
+                  golden fries.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-lg font-bold text-[#2B2B2B]">R150</span>
+                  <button
+                    class="add-to-cart bg-[#F8B929] text-[#2B2B2B] font-bold py-2 px-4 rounded-full hover:bg-[#D36B14] transition"
+                    data-name="Full Chicken And Chips"
+                    data-price="150"
+                  >
+                    Add to Order
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="menu-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105"
+            >
+              <!-- <div class="h-48 overflow-hidden">
+                <picture>
+                  <source
+                    srcset="./Images/half-chicken-and-chips.avif"
+                    type="image/avif"
+                  />
+                  <source
+                    srcset="./Images/half-chicken-and-chips.webp"
+                    type="image/webp"
+                  />
+                  <img
+                    src="./Images/half-chicken-and-chips.png"
+                    alt="Half Chicken And Chips"
+                    class="w-full h-full object-cover lazy-load"
+                    loading="lazy"
+                  />
+                </picture>
+              </div> -->
+              <div class="p-6 flex-grow">
+                <h3 class="text-xl font-bold text-[#D82424] mb-2">
+                  Half Chicken And Chips
+                </h3>
+                <p class="text-gray-700 mb-4">
+                  Perfect balance of grilled heat and salty crunch.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-lg font-bold text-[#2B2B2B]">R85</span>
+                  <button
+                    class="add-to-cart bg-[#F8B929] text-[#2B2B2B] font-bold py-2 px-4 rounded-full hover:bg-[#D36B14] transition"
+                    data-name="Half Chicken And Chips"
+                    data-price="85"
+                  >
+                    Add to Order
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="menu-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105"
+            >
+              <!-- <div class="h-48 overflow-hidden">
+                <picture>
+                  <source
+                    srcset="./Images/quarter-chicken-and-chips.avif"
+                    type="image/avif"
+                  />
+                  <source
+                    srcset="./Images/quarter-chicken-and-chips.webp"
+                    type="image/webp"
+                  />
+                  <img
+                    src="./Images/quarter-chicken-and-chips.png"
+                    alt="Quarter Chicken And Chips"
+                    class="w-full h-full object-cover lazy-load"
+                    loading="lazy"
+                  />
+                </picture>
+              </div> -->
+              <div class="p-6 flex-grow">
+                <h3 class="text-xl font-bold text-[#D82424] mb-2">
+                  Quarter Chicken And Chips
+                </h3>
+                <p class="text-gray-700 mb-4">
+                  Double the flame, double the flex.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-lg font-bold text-[#2B2B2B]">R50</span>
+                  <button
+                    class="add-to-cart bg-[#F8B929] text-[#2B2B2B] font-bold py-2 px-4 rounded-full hover:bg-[#D36B14] transition"
+                    data-name="Quarter Chicken And Chips"
+                    data-price="50"
+                  >
+                    Add to Order
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="menu-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105"
+            >
+              <!-- <div class="h-48 overflow-hidden">
+                <picture>
+                  <source
+                    srcset="./Images/full-chicken-pap.avif"
+                    type="image/avif"
+                  />
+                  <source
+                    srcset="./Images/full-chicken-pap.webp"
+                    type="image/webp"
+                  />
+                  <img
+                    src="./Images/full-chicken-pap.jpg"
+                    alt="Full Chicken and Pap"
+                    class="w-full h-full object-cover lazy-load"
+                    loading="lazy"
+                  />
+                </picture>
+              </div> -->
+              <div class="p-6 flex-grow">
+                <h3 class="text-xl font-bold text-[#D82424] mb-2">
+                  Full Chicken and Pap
+                </h3>
+                <p class="text-gray-700 mb-4">
+                  Full flame chicken served with traditional pap for the
+                  ultimate township meal experience.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-lg font-bold text-[#2B2B2B]">R160</span>
+                  <button
+                    class="add-to-cart bg-[#F8B929] text-[#2B2B2B] font-bold py-2 px-4 rounded-full hover:bg-[#D36B14] transition"
+                    data-name="Full Chicken and Pap"
+                    data-price="160"
+                  >
+                    Add to Order
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="menu-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105"
+            >
+              <!-- <div class="h-48 overflow-hidden">
+                <picture>
+                  <source
+                    srcset="./Images/half-chicken-pap.avif"
+                    type="image/avif"
+                  />
+                  <source
+                    srcset="./Images/half-chicken-pap.webp"
+                    type="image/webp"
+                  />
+                  <img
+                    src="./Images/half-chicken-pap.jpg"
+                    alt="Half Chicken and Pap"
+                    class="w-full h-full object-cover lazy-load"
+                    loading="lazy"
+                  />
+                </picture>
+              </div> -->
+              <div class="p-6 flex-grow">
+                <h3 class="text-xl font-bold text-[#D82424] mb-2">
+                  Half Chicken and Pap
+                </h3>
+                <p class="text-gray-700 mb-4">
+                  Perfectly grilled half chicken served with pap for a
+                  satisfying meal.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-lg font-bold text-[#2B2B2B]">R85</span>
+                  <button
+                    class="add-to-cart bg-[#F8B929] text-[#2B2B2B] font-bold py-2 px-4 rounded-full hover:bg-[#D36B14] transition"
+                    data-name="Half Chicken and Pap"
+                    data-price="85"
+                  >
+                    Add to Order
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="menu-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105"
+            >
+              <!-- <div class="h-48 overflow-hidden">
+                <picture>
+                  <source
+                    srcset="./Images/quarter-chicken-pap.avif"
+                    type="image/avif"
+                  />
+                  <source
+                    srcset="./Images/quarter-chicken-pap.webp"
+                    type="image/webp"
+                  />
+                  <img
+                    src="./Images/quarter-chicken-pap.jpg"
+                    alt="Quarter Chicken And Pap"
+                    class="w-full h-full object-cover lazy-load"
+                    loading="lazy"
+                  />
+                </picture>
+              </div> -->
+              <div class="p-6 flex-grow">
+                <h3 class="text-xl font-bold text-[#D82424] mb-2">
+                  Quarter Chicken And Pap
+                </h3>
+                <p class="text-gray-700 mb-4">
+                  Flame-grilled quarter chicken with traditional pap for a
+                  quick, delicious meal.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-lg font-bold text-[#2B2B2B]">R55</span>
+                  <button
+                    class="add-to-cart bg-[#F8B929] text-[#2B2B2B] font-bold py-2 px-4 rounded-full hover:bg-[#D36B14] transition"
+                    data-name="Quarter Chicken And Pap"
+                    data-price="55"
+                  >
+                    Add to Order
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Full Meal Content -->
+        <div id="full-meal" class="tab-content hidden">
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-4xl mx-auto"
+          >
+            <div
+              class="menu-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105"
+            >
+              <!-- <div class="h-48 overflow-hidden">
+                <picture>
+                  <source srcset="./Images/slide-four.avif" type="image/avif" />
+                  <source srcset="./Images/slide-four.webp" type="image/webp" />
+                  <img
+                    src="./Images/slide-four.png"
+                    alt="Flexy Full Meal"
+                    class="w-full h-full object-cover lazy-load"
+                    loading="lazy"
+                  />
+                </picture>
+              </div> -->
+              <div class="p-6 flex-grow">
+                <h3 class="text-xl font-bold text-[#D82424] mb-2">
+                  Flexy Full Meal
+                </h3>
+                <p class="text-gray-700 mb-4">
+                  Full chicken served with pap and two sides — the ultimate meal
+                  for those who want it all. Ideal for sharing or one seriously
+                  hungry fan.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-lg font-bold text-[#2B2B2B]">R140</span>
+                  <button
+                    class="add-to-cart bg-[#F8B929] text-[#2B2B2B] font-bold py-2 px-4 rounded-full hover:bg-[#D36B14] transition"
+                    data-name="Flexy Full Meal"
+                    data-price="140"
+                  >
+                    Add to Order
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-12">
+          <button
+            id="checkoutButton"
+            class="bg-[#D82424] text-white font-bold py-4 px-8 rounded-full inline-block hover:bg-[#2B2B2B] transition duration-300 text-lg"
+          >
+            Checkout & Send Order <i class="fas fa-shopping-cart ml-2"></i>
+          </button>
+          </div>
+          <br></br>
+          <!-- Add customer details form -->
+          <div class="mb-6">
+            <h4 class="font-bold mb-3 text-gray-800">Your Details</h4>
+            <input
+              type="text"
+              id="customerName"
+              placeholder="Your Name"
+              class="w-full p-3 border border-gray-300 rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-[#D82424]"
+            />
+            <input
+              type="tel"
+              id="customerPhone"
+              placeholder="Your Phone Number"
+              class="w-full p-3 border border-gray-300 rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-[#D82424]"
+            />
+            <input
+              type="text"
+              id="pickupTime"
+              placeholder="Preferred Pickup Time (optional)"
+              class="w-full p-3 border border-gray-300 rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-[#D82424]"
+            />
+            <textarea
+              id="orderNotes"
+              placeholder="Any special instructions?"
+              class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D82424]"
+              rows="3"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-[#ffffff] text-black">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row items-center">
+          <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">
+              <span class="text-[#D82424]">The Flame</span> That Cooked Our
+              Roots
+            </h2>
+            <p class="text-lg mb-4">
+              From a rainy balcony to the buzz of P138 Street, Flexy Chicken was
+              born from fire, flavor, and fierce ambition.
+            </p>
+            <p class="text-lg mb-6">
+              Sinethemba Zondo started Flexy Chicken in 2018 with just a small
+              grill and a big dream. What began as a way to feed her family
+              quickly became the talk of Inanda, with neighbors lining up for
+              her signature flame-grilled chicken.
+            </p>
+            <p class="text-lg mb-8">
+              Today, Flexy Chicken stands as a testament to township
+              entrepreneurship, employing 15 local staff and serving over 500
+              meals daily. Our mission goes beyond food — we're building
+              community, one flame-grilled piece at a time.
+            </p>
+            <a
+              href="#contact"
+              class="bg-[#F8B929] text-[#2B2B2B] font-bold py-3 px-6 rounded-full inline-block hover:bg-white transition duration-300"
+            >
+              Visit Us <i class="fas fa-map-marker-alt ml-2"></i>
+            </a>
+          </div>
+          <div class="md:w-1/2">
+            <div class="relative">
+              <picture>
+                <source
+                  srcset="./Images/FlexyAvifImg/about=section-use.avif"
+                  type="image/avif"
+                />
+                <source
+                  srcset="./Images/FlexyWebP/about=section-use.webp"
+                  type="image/webp"
+                />
+                <img
+                  src="./Images/opencompressed/use-about-section(n).png"
+                  alt="Flexy Chicken Story"
+                  class="rounded-lg shadow-xl w-full lazy-load"
+                  loading="lazy"
+                />
+              </picture>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-[#2B2B2B] text-white">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row">
+          <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">
+              Find Us in <span class="text-[#D82424]">Inanda</span>
+            </h2>
+
+            <div class="mb-8">
+              <h3 class="text-xl font-bold mb-2 text-[#F8B929]">Location</h3>
+              <p>P138 Street, Inanda, Durban</p>
+            </div>
+
+            <div class="mb-8">
+              <h3 class="text-xl font-bold mb-2 text-[#F8B929]">Hours</h3>
+              <p>Monday - Sunday: 8AM - 8PM</p>
+            </div>
+
+            <div class="mb-8">
+              <h3 class="text-xl font-bold mb-2 text-[#F8B929]">Contact</h3>
+              <p class="mb-2"><i class="fas fa-phone mr-2"></i>076 945 5897</p>
+              <p class="mb-2">
+                <i class="fas fa-envelope mr-2"></i
+                >flexychicken.service@gmail.com
+              </p>
+              <p>
+                <i class="fab fa-whatsapp mr-2"></i>
+                <a href="https://wa.me/27769455897" class="underline"
+                  >Tap to Chat</a
+                >
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-bold mb-2 text-[#F8B929]">Follow Us</h3>
+              <div class="flex space-x-4">
+                <a
+                  href="https://www.facebook.com/flexy_chicken"
+                  class="text-white hover:text-[#F8B929]"
+                  ><i class="fab fa-facebook-f text-2xl"></i
+                ></a>
+                <a
+                  href="https://www.instagram.com/flexychicken?utm_source=qr&igsh=bW4xNHB3dXhnMDd4"
+                  class="text-white hover:text-[#F8B929]"
+                  ><i class="fab fa-instagram text-2xl"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="md:w-1/2">
+            <!-- Google Maps Embed -->
+            <div class="bg-gray-200 h-96 rounded-lg overflow-hidden">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d55444.17181564436!2d30.876403204930273!3d-29.712205639647905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ef703a42f4a15c1%3A0x9513b9901bb20359!2sFlexy%20chicken!5e0!3m2!1sen!2sza!4v1758133177084!5m2!1sen!2sza"
+                width="600"
+                height="450"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#C4201E] text-white py-6">
+      <div class="container mx-auto px-2">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-4 md:mb-0">
+            <a href="#" class="flex items-center space-x-2">
+              <img
+                src="./Images/logo.jpg"
+                alt="Flexy Chicken Logo"
+                class="h-12 w-auto"
+              />
+              <div
+                class="text-white text-3xl"
+                style="font-family: 'Luckiest Guy', cursive"
+              >
+                FLEXY CHICKEN
+              </div>
+            </a>
+            <p class="text-sm mt-2">
+              Where Township Flavours Rise to Greatness
+            </p>
+          </div>
+
+          <div class="flex flex-col items-center md:items-end">
+            <p class="text-sm mb-2">
+              © 2025 Flexy Chicken. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile Menu Toggle
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      mobileMenuButton.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+
+          // Close mobile menu if open
+          mobileMenu.classList.add("hidden");
+        });
+      });
+
+      // Menu Tab Switching
+      function openTab(tabName) {
+        const tabContents = document.getElementsByClassName("tab-content");
+        for (let i = 0; i < tabContents.length; i++) {
+          tabContents[i].classList.add("hidden");
+        }
+
+        const tabButtons = document.getElementsByClassName("tab-button");
+        for (let i = 0; i < tabButtons.length; i++) {
+          tabButtons[i].classList.remove("active-tab");
+        }
+
+        document.getElementById(tabName).classList.remove("hidden");
+        event.currentTarget.classList.add("active-tab");
+      }
+
+      // Cart functionality
+      let cart = JSON.parse(localStorage.getItem("flexyCart")) || [];
+      const cartCount = document.getElementById("cartCount");
+      const cartNotification = document.getElementById("cartNotification");
+      const notificationText = document.getElementById("notificationText");
+      const checkoutButton = document.getElementById("checkoutButton");
+      const orderSummaryModal = document.getElementById("orderSummaryModal");
+      const closeSummary = document.getElementById("closeSummary");
+      const summaryItems = document.getElementById("summaryItems");
+      const summaryTotal = document.getElementById("summaryTotal");
+      const confirmOrder = document.getElementById("confirmOrder");
+      const continueShopping = document.getElementById("continueShopping");
+
+      function updateCartCounter() {
+        const count = cart.reduce((total, item) => total + item.quantity, 0);
+        cartCount.textContent = count;
+
+        // Show/hide checkout button based on cart items
+        if (count > 0) {
+          checkoutButton.classList.remove("hidden");
+        } else {
+          checkoutButton.classList.add("hidden");
+        }
+      }
+
+      function showNotification(message) {
+        notificationText.textContent = message;
+        cartNotification.classList.add("show");
+        setTimeout(() => {
+          cartNotification.classList.remove("show");
+        }, 3000);
+      }
+
+      function updateOrderSummary() {
+        // Clear previous items
+        summaryItems.innerHTML = "";
+
+        let total = 0;
+
+        // Add each item to summary
+        cart.forEach((item) => {
+          const itemTotal = item.price * item.quantity;
+          total += itemTotal;
+
+          const itemElement = document.createElement("div");
+          itemElement.className = "flex justify-between items-center mb-3";
+          itemElement.innerHTML = `
+                    <div>
+                        <span class="font-medium">${item.name}</span>
+                        <span class="text-gray-600 text-sm ml-2">x${item.quantity}</span>
+                    </div>
+                    <span class="font-medium">R${itemTotal}</span>
+                `;
+
+          summaryItems.appendChild(itemElement);
+        });
+
+        // Update total
+        summaryTotal.textContent = `R${total}`;
+      }
+      
+      function sendWhatsAppOrder() {
+
+        const customerName =
+          document.getElementById("customerName")?.value || "Not provided";
+        const customerPhone =
+          document.getElementById("customerPhone")?.value || "Not provided";
+        const pickupTime =
+          document.getElementById("pickupTime")?.value || "ASAP";
+        const orderNotes = document.getElementById("orderNotes")?.value || "";
+
+        let message = "*🍗 FLEXY CHICKEN ORDER 🍗*\n\n";
+
+        message += "*Customer Details:*\n";
+        message += `• Name: ${customerName}\n`;
+        message += `• Phone: ${customerPhone}\n\n`;
+
+        message += "*Order Summary:*\n";
+
+        let total = 0;
+        cart.forEach((item, index) => {
+          const itemTotal = item.price * item.quantity;
+          total += itemTotal;
+          message += `${index + 1}. ${item.name}\n`;
+          message += `   Quantity: ${item.quantity}\n`;
+          message += `   Price: R${item.price} each\n`;
+          message += `   Subtotal: R${itemTotal}\n\n`;
+        });
+
+        message += `*Total Amount:* R${total}\n\n`;
+        message += "*Pickup Details:*\n";
+        message += "• Location: P138 Street, Inanda, Durban\n";
+        message += `• Time: ${pickupTime}\n`;
+        message += "• Hours: Monday - Sunday, 8AM - 8PM\n\n";
+
+        if (orderNotes) {
+          message += "*Special Instructions:*\n" + orderNotes + "\n\n";
+        }
+
+        message += "Thank you for choosing Flexy Chicken! 🔥\n";
+        message += "We'll prepare your order fresh and flame-grilled.";
+        console.log(message);
+        const encodedMessage = encodeURIComponent(message);
+        window.open(
+          `https://wa.me/27769455897?text=${encodedMessage}`,
+          "_blank"
+        );
+
+        // clear cart & close modal
+        cart = [];
+        localStorage.setItem("flexyCart", JSON.stringify(cart));
+        updateCartCounter();
+        orderSummaryModal.classList.remove("active");
+        showNotification("Order sent to WhatsApp! Please confirm and send.");
+      }
+
+      // Add to cart functionality
+      document.addEventListener("DOMContentLoaded", () => {
+        const addToCartButtons = document.querySelectorAll(".add-to-cart");
+
+        addToCartButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            const name = this.getAttribute("data-name");
+            const price = parseFloat(this.getAttribute("data-price"));
+
+            // Check if item already exists in cart
+            const existingItem = cart.find((item) => item.name === name);
+
+            if (existingItem) {
+              existingItem.quantity += 1;
+            } else {
+              cart.push({
+                name: name,
+                price: price,
+                quantity: 1,
+              });
+            }
+
+            // Save to localStorage
+            localStorage.setItem("flexyCart", JSON.stringify(cart));
+
+            // Update UI
+            updateCartCounter();
+            showNotification(`${name} added to cart!`);
+
+            // Animate button for feedback
+            this.classList.add("bg-[#D36B14]");
+            setTimeout(() => {
+              this.classList.remove("bg-[#D36B14]");
+            }, 300);
+          });
+        });
+
+        // Checkout button
+        checkoutButton.addEventListener("click", () => {
+          if (cart.length === 0) {
+            showNotification("Your cart is empty!");
+            return;
+          }
+
+          updateOrderSummary();
+          orderSummaryModal.classList.add("active");
+        });
+
+        // Close modal
+        closeSummary.addEventListener("click", () => {
+          orderSummaryModal.classList.remove("active");
+        });
+
+        continueShopping.addEventListener("click", () => {
+          orderSummaryModal.classList.remove("active");
+        });
+
+        // Confirm order
+        confirmOrder.addEventListener("click", sendWhatsAppOrder);
+
+        // Close modal when clicking outside
+        orderSummaryModal.addEventListener("click", (e) => {
+          if (e.target === orderSummaryModal) {
+            orderSummaryModal.classList.remove("active");
+          }
+        });
+
+        // Initialize cart counter
+        updateCartCounter();
+
+        // Hero text animation
+        const heroTextItems = document.querySelectorAll(".hero-text-item");
+        heroTextItems.forEach((item, index) => {
+          setTimeout(() => {
+            item.classList.add("active");
+          }, index * 500);
+        });
+
+        // Lazy load images
+        const lazyImages = document.querySelectorAll(".lazy-load");
+
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              img.classList.add("loaded");
+              observer.unobserve(img);
+            }
+          });
+        });
+
+        lazyImages.forEach((img) => imageObserver.observe(img));
+      });
+
+      // Testimonial Carousel
+      class TestimonialCarousel {
+        constructor() {
+          this.currentSlide = 0;
+          this.track = document.querySelector(".testimonial-track");
+          this.slides = document.querySelectorAll(".testimonial-slide");
+          this.dots = document.querySelectorAll(".dot");
+          this.startX = 0;
+          this.currentX = 0;
+          this.isDragging = false;
+
+          this.init();
+        }
+
+        init() {
+          // Add event listeners to dots
+          this.dots.forEach((dot) => {
+            dot.addEventListener("click", (e) => {
+              const index = parseInt(e.target.getAttribute("data-index"));
+              this.showTestimonial(index);
+            });
+          });
+
+          // Touch events for mobile
+          this.track.addEventListener(
+            "touchstart",
+            this.handleTouchStart.bind(this)
+          );
+          this.track.addEventListener(
+            "touchmove",
+            this.handleTouchMove.bind(this)
+          );
+          this.track.addEventListener(
+            "touchend",
+            this.handleTouchEnd.bind(this)
+          );
+
+          // Mouse events for desktop
+          this.track.addEventListener(
+            "mousedown",
+            this.handleMouseDown.bind(this)
+          );
+          this.track.addEventListener(
+            "mousemove",
+            this.handleMouseMove.bind(this)
+          );
+          this.track.addEventListener("mouseup", this.handleMouseUp.bind(this));
+          this.track.addEventListener(
+            "mouseleave",
+            this.handleMouseUp.bind(this)
+          );
+
+          // Auto-advance (optional)
+          this.startAutoAdvance();
+        }
+
+        handleTouchStart(e) {
+          this.startX = e.touches[0].clientX;
+          this.isDragging = true;
+          this.stopAutoAdvance();
+        }
+
+        handleTouchMove(e) {
+          if (!this.isDragging) return;
+          this.currentX = e.touches[0].clientX;
+        }
+
+        handleTouchEnd() {
+          if (!this.isDragging) return;
+
+          const diff = this.startX - this.currentX;
+          const swipeThreshold = 50;
+
+          if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+              this.next();
+            } else {
+              this.prev();
+            }
+          }
+
+          this.isDragging = false;
+          this.startAutoAdvance();
+        }
+
+        handleMouseDown(e) {
+          this.startX = e.clientX;
+          this.isDragging = true;
+          this.stopAutoAdvance();
+          e.preventDefault();
+        }
+
+        handleMouseMove(e) {
+          if (!this.isDragging) return;
+          this.currentX = e.clientX;
+        }
+
+        handleMouseUp() {
+          if (!this.isDragging) return;
+
+          const diff = this.startX - this.currentX;
+          const swipeThreshold = 50;
+
+          if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+              this.next();
+            } else {
+              this.prev();
+            }
+          }
+
+          this.isDragging = false;
+          this.startAutoAdvance();
+        }
+
+        showTestimonial(index) {
+          if (index < 0) index = this.slides.length - 1;
+          if (index >= this.slides.length) index = 0;
+
+          this.currentSlide = index;
+
+          // Update track position
+          this.track.style.transform = `translateX(-${index * 100}%)`;
+
+          // Update dots
+          this.dots.forEach((dot, i) => {
+            if (i === index) {
+              dot.style.backgroundColor = "#db6709";
+            } else {
+              dot.style.backgroundColor = "#d1d5db"; // gray-300
+            }
+          });
+        }
+
+        next() {
+          this.showTestimonial(this.currentSlide + 1);
+        }
+
+        prev() {
+          this.showTestimonial(this.currentSlide - 1);
+        }
+
+        startAutoAdvance() {
+          this.stopAutoAdvance();
+          this.autoAdvanceInterval = setInterval(() => {
+            this.next();
+          }, 5000); // Change slide every 5 seconds
+        }
+
+        stopAutoAdvance() {
+          if (this.autoAdvanceInterval) {
+            clearInterval(this.autoAdvanceInterval);
+          }
+        }
+      }
+
+      // Initialize carousel when DOM is loaded
+      document.addEventListener("DOMContentLoaded", () => {
+        new TestimonialCarousel();
+      });
+    </script>
+  </body>
+</html>
